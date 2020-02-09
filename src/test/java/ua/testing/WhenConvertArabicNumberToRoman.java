@@ -29,6 +29,8 @@ public class WhenConvertArabicNumberToRoman
         assertEquals("II", romanNumber);
     }
 
+
+
     @Test
     public void ConvertFiveToRoman(){
         String romanNumber = ConvertToRoman(5);
@@ -39,6 +41,12 @@ public class WhenConvertArabicNumberToRoman
     public void ConvertSixToRoman(){
         String romanNumber = ConvertToRoman(6);
         assertEquals("VI", romanNumber);
+    }
+
+    @Test
+    public void ConvertEightToRoman(){
+        String romanNumber = ConvertToRoman(8);
+        assertEquals("VIII", romanNumber);
     }
 
 

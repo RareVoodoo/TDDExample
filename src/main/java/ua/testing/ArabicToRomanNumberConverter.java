@@ -1,25 +1,38 @@
 package ua.testing;
 
+
+
+import java.util.Collections;
+
+import java.util.Map;
+import java.util.TreeMap;
+
 public class ArabicToRomanNumberConverter {
     public String convert(int arabicNumber) {
         boolean noNumber = arabicNumber == 0;
         if (noNumber)
             return getDefaultRomanNumber();
 
-        return getRomanNumber(arabicNumber);
+        return getRoughRomanNumber(arabicNumber);
 
     }
 
-    private String getRomanNumber(int arabicNumber) {
-        String romanNumber = "";
-        while (arabicNumber >= 5) {
-            romanNumber += "V";
-            arabicNumber -= 5;
-        }
+    Map<Integer, String > romanNumbersMap;
 
-        while (arabicNumber >= 1) {
-            romanNumber += "I";
-            arabicNumber--;
+    public ArabicToRomanNumberConverter() {
+        romanNumbersMap = new TreeMap<>(Collections.<Integer>reverseOrder());
+        romanNumbersMap.put(1,"I");
+        romanNumbersMap.put(5,"V");
+    }
+
+    private String getRoughRomanNumber(int arabicNumber) {
+        String romanNumber = "";
+
+        for (Map.Entry<Integer, String> item: romanNumbersMap.entrySet()){
+            while (arabicNumber >= item.getKey()) {
+                romanNumber += item.getValue();
+                arabicNumber -= item.getKey();
+            }
         }
         return romanNumber;
     }
